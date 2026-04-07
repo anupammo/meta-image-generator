@@ -29,59 +29,105 @@
 
     <!-- ─── Main content ──────────────────────────────────────── -->
     <main id="main-content" class="hidden">
+      <section class="tab-bar" aria-label="Popup sections">
+        <button type="button" id="tab-studio" class="tab-button is-active" data-tab-target="studio-panel">Studio</button>
+        <button type="button" id="tab-details" class="tab-button" data-tab-target="details-panel">Details</button>
+      </section>
 
-      <!-- Meta Image Status -->
-      <section class="card" id="status-card">
-        <h2 class="section-title">Meta Image Status</h2>
-        <div id="status-badge" class="status-badge status-missing">
-          <span id="status-icon">✗</span>
-          <span id="status-text">No meta image found</span>
-        </div>
+      <section id="details-panel" class="tab-panel hidden">
+        <!-- Meta Image Status -->
+        <section class="card" id="status-card">
+          <h2 class="section-title">Meta Image Status</h2>
+          <div id="status-badge" class="status-badge status-missing">
+            <span id="status-icon">✗</span>
+            <span id="status-text">No meta image found</span>
+          </div>
 
-        <!-- Existing image preview -->
-        <div id="existing-preview" class="hidden">
-          <img id="existing-img" src="" alt="Current OG/meta image" class="preview-img" />
-          <div class="meta-info">
-            <div class="meta-row">
-              <span class="meta-label">Source:</span>
-              <span id="meta-source" class="meta-value"></span>
-            </div>
-            <div class="meta-row">
-              <span class="meta-label">Dimensions:</span>
-              <span id="meta-dimensions" class="meta-value">—</span>
+          <!-- Existing image preview -->
+          <div id="existing-preview" class="hidden">
+            <img id="existing-img" src="" alt="Current OG/meta image" class="preview-img" />
+            <div class="meta-info">
+              <div class="meta-row">
+                <span class="meta-label">Source:</span>
+                <span id="meta-source" class="meta-value"></span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Dimensions:</span>
+                <span id="meta-dimensions" class="meta-value">—</span>
+              </div>
+              <div class="meta-row">
+                <span class="meta-label">Ratio Check:</span>
+                <span id="meta-ratio-check" class="meta-value">—</span>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        <!-- Page Meta Summary -->
+        <section class="card" id="page-meta-card">
+          <h2 class="section-title">Page Meta Summary</h2>
+          <div class="meta-grid">
+            <div class="meta-row"><span class="meta-label">Title:</span><span id="pg-title" class="meta-value"></span></div>
+            <div class="meta-row"><span class="meta-label">Description:</span><span id="pg-desc" class="meta-value"></span></div>
+            <div class="meta-row"><span class="meta-label">Domain:</span><span id="pg-domain" class="meta-value"></span></div>
+            <div class="meta-row"><span class="meta-label">OG Type:</span><span id="pg-type" class="meta-value"></span></div>
+            <div class="meta-row"><span class="meta-label">Twitter Card:</span><span id="pg-twitter" class="meta-value"></span></div>
+          </div>
+        </section>
+
+        <section class="card" id="social-audit-card">
+          <h2 class="section-title">Social Preview Audit</h2>
+          <p class="hint">Checks whether the current page includes the expected social preview tags and whether the current image dimensions fit common platform targets.</p>
+          <div id="platform-audit-grid" class="platform-audit-grid"></div>
+          <div id="dimension-audit-grid" class="dimension-audit-grid"></div>
+        </section>
       </section>
 
-      <!-- Page Meta Summary -->
-      <section class="card" id="page-meta-card">
-        <h2 class="section-title">Page Meta Summary</h2>
-        <div class="meta-grid">
-          <div class="meta-row"><span class="meta-label">Title:</span><span id="pg-title" class="meta-value"></span></div>
-          <div class="meta-row"><span class="meta-label">Description:</span><span id="pg-desc" class="meta-value"></span></div>
-          <div class="meta-row"><span class="meta-label">Domain:</span><span id="pg-domain" class="meta-value"></span></div>
-          <div class="meta-row"><span class="meta-label">OG Type:</span><span id="pg-type" class="meta-value"></span></div>
-          <div class="meta-row"><span class="meta-label">Twitter Card:</span><span id="pg-twitter" class="meta-value"></span></div>
-        </div>
-      </section>
+      <section id="studio-panel" class="tab-panel">
+        <!-- Image Generator -->
+        <section class="card" id="generator-card">
+          <h2 class="section-title">Generate Social Preview Image</h2>
+          <p class="hint">Customize and generate a professional 1200 × 630 image.</p>
 
-      <!-- Image Generator -->
-      <section class="card" id="generator-card">
-        <h2 class="section-title">Generate Social Preview Image</h2>
-        <p class="hint">Customize and generate a professional 1200 × 630 image.</p>
+          <section id="brand-summary" class="brand-summary hidden">
+            <div id="brand-media-wrap" class="brand-media-wrap">
+              <img id="brand-preview" src="" alt="Detected brand asset" class="brand-preview" />
+            </div>
+            <div class="brand-summary-copy">
+              <p id="brand-source" class="brand-source">No page brand asset detected.</p>
+              <div id="palette-chips" class="palette-chips"></div>
+            </div>
+          </section>
 
         <!-- Preset templates -->
         <div class="form-group">
           <label class="form-label" for="template-select">Template</label>
-          <select id="template-select" class="form-control">
+          <div id="template-grid" class="template-grid"></div>
+          <select id="template-select" class="form-control hidden" aria-hidden="true" tabindex="-1">
+            <option value="page-brand">Auto from Page Brand</option>
             <option value="gradient-blue">Gradient Blue</option>
             <option value="gradient-purple">Gradient Purple</option>
             <option value="gradient-green">Gradient Green</option>
             <option value="gradient-orange">Gradient Orange</option>
+            <option value="gradient-rose">Gradient Rose</option>
+            <option value="gradient-teal">Gradient Teal</option>
+            <option value="gradient-indigo">Gradient Indigo</option>
+            <option value="gradient-sunrise">Gradient Sunrise</option>
             <option value="dark">Dark Professional</option>
             <option value="light">Light Clean</option>
             <option value="branded">Branded (Custom Colour)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="layout-select">Layout</label>
+          <div id="layout-grid" class="layout-grid"></div>
+          <select id="layout-select" class="form-control hidden" aria-hidden="true" tabindex="-1">
+            <option value="split-right">Split Right</option>
+            <option value="split-left">Split Left</option>
+            <option value="stacked">Stacked Story</option>
+            <option value="framed">Framed Focus</option>
+            <option value="spotlight">Spotlight Banner</option>
           </select>
         </div>
 
@@ -94,12 +140,38 @@
           </div>
         </div>
 
-        <!-- Title -->
         <div class="form-group">
-          <label class="form-label" for="gen-title">Title</label>
-          <input type="text" id="gen-title" class="form-control" placeholder="Page title" maxlength="80" />
-          <span class="char-count"><span id="title-count">0</span>/80</span>
+          <label class="form-label" for="hero-image-select">Visual Assets</label>
+          <select id="hero-image-select" class="form-control">
+            <option value="none">Text + background only</option>
+            <option value="page-meta-image">Use existing page meta image</option>
+            <option value="brand-image">Use brand logo / favicon</option>
+            <option value="custom-url">Use custom image URL</option>
+          </select>
         </div>
+
+        <div class="form-group hidden" id="hero-image-url-group">
+          <label class="form-label" for="hero-image-url">Custom Image URL</label>
+          <input type="url" id="hero-image-url" class="form-control" placeholder="https://images.example.com/photo.jpg" />
+        </div>
+
+        <div class="toggle-grid">
+          <label class="toggle-option">
+            <input type="checkbox" id="use-brand-image" checked />
+            <span>Use detected brand logo / favicon</span>
+          </label>
+          <label class="toggle-option">
+            <input type="checkbox" id="use-gradient-overlay" checked />
+            <span>Keep gradient background with image</span>
+          </label>
+        </div>
+
+          <!-- Title -->
+          <div class="form-group">
+            <label class="form-label" for="gen-title">Title</label>
+            <input type="text" id="gen-title" class="form-control" placeholder="Page title" maxlength="80" />
+            <span class="char-count"><span id="title-count">0</span>/80</span>
+          </div>
 
         <!-- Description -->
         <div class="form-group">
@@ -148,17 +220,41 @@
           <button id="btn-generate" class="btn btn-primary">Generate &amp; Download</button>
         </div>
 
-        <!-- Canvas preview area -->
-        <div id="canvas-wrapper" class="canvas-wrapper hidden">
-          <canvas id="gen-canvas"></canvas>
-          <div id="download-links" class="download-links hidden">
-            <p class="download-title">Download image:</p>
-            <div id="download-buttons" class="download-btn-row"></div>
+          <!-- Canvas preview area -->
+          <div id="canvas-wrapper" class="canvas-wrapper hidden">
+            <canvas id="gen-canvas"></canvas>
+            <p id="render-message" class="render-message hidden"></p>
+            <div id="download-links" class="download-links hidden">
+              <p class="download-title">Download image:</p>
+              <div id="download-buttons" class="download-btn-row"></div>
+            </div>
           </div>
-        </div>
+        </section>
       </section>
 
     </main>
+
+    <section class="extension-links">
+      <a class="extension-card" href="https://chromewebstore.google.com/detail/ebkogcpaeaofidbegiadlfcfhlnaccnn?utm_source=item-share-cb" target="_blank" rel="noreferrer noopener">
+        <img class="extension-card-icon" src="https://lh3.googleusercontent.com/Tf3fHFbHKrWARSUSZsj0kTFkoxRN0wevwcu2uX1Uq5y4W4Hs5mNsl__1yZkgc4Q2f2LSdMMYbuZ04GOYfPZE9qp7=s120" alt="Website Framework Detector icon" />
+        <div class="extension-card-copy">
+          <p class="extension-card-title">Website Framework Detector</p>
+          <p class="extension-card-text">Detects CMS and website builder platforms like WordPress, Shopify, Wix, and Webflow</p>
+        </div>
+      </a>
+
+      <a class="extension-card" href="https://chromewebstore.google.com/detail/jgigdhidhmgikfnccdnehcpgoggmagfh?utm_source=item-share-cb" target="_blank" rel="noreferrer noopener">
+        <img class="extension-card-icon" src="https://lh3.googleusercontent.com/8We9a29usM_2xGFax2OqRYwoC5TZjn_S6uBp5hyO0EZelom1pxA3JSplJZkuGwSwCv0qX9vQI_22m5uDipxt4YMGiw=s120" alt="SEO Checklist icon" />
+        <div class="extension-card-copy">
+          <p class="extension-card-title">SEO Checklist</p>
+          <p class="extension-card-text">Real-time on-page SEO analysis with 2025 optimization metrics and quick access to SEO testing tools</p>
+        </div>
+      </a>
+    </section>
+
+    <footer class="popup-footer">
+      <p>Developed by : <a href="https://anupammondal.in/" target="_blank" rel="noreferrer noopener">Anupam Mondal</a></p>
+    </footer>
 
     <script src="popup.js"></script>
   </body>
