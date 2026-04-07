@@ -28,7 +28,7 @@ A **Google Chrome Extension** that checks whether a webpage has a Meta / OG Imag
 ```
 meta-image-generator/
 ├── manifest.json      # Chrome Extension Manifest V3
-├── content.js         # Injected into pages – extracts meta/OG/Twitter tags
+├── content.js         # Injected on demand into the active tab – extracts meta/OG/Twitter tags
 ├── popup.html         # Extension popup UI
 ├── popup.css          # Popup styles
 ├── popup.js           # Popup logic (meta checker + canvas image generator)
