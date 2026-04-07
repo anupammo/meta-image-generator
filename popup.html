@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta Image Generator</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <!-- ─── Header ─────────────────────────────────────────────── -->
+    <header class="header">
+      <img src="icons/icon48.png" alt="Meta Image Generator logo" class="logo" />
+      <div>
+        <h1 class="title">Meta Image Generator</h1>
+        <p class="subtitle">OG &amp; Meta Social Preview</p>
+      </div>
+    </header>
+
+    <!-- ─── Loading state ─────────────────────────────────────── -->
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p>Analyzing page…</p>
+    </div>
+
+    <!-- ─── Error state ────────────────────────────────────────── -->
+    <div id="error-state" class="hidden card error-card">
+      <p id="error-message">Unable to read page meta data.</p>
+    </div>
+
+    <!-- ─── Main content ──────────────────────────────────────── -->
+    <main id="main-content" class="hidden">
+
+      <!-- Meta Image Status -->
+      <section class="card" id="status-card">
+        <h2 class="section-title">Meta Image Status</h2>
+        <div id="status-badge" class="status-badge status-missing">
+          <span id="status-icon">✗</span>
+          <span id="status-text">No meta image found</span>
+        </div>
+
+        <!-- Existing image preview -->
+        <div id="existing-preview" class="hidden">
+          <img id="existing-img" src="" alt="Current OG/meta image" class="preview-img" />
+          <div class="meta-info">
+            <div class="meta-row">
+              <span class="meta-label">Source:</span>
+              <span id="meta-source" class="meta-value"></span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Dimensions:</span>
+              <span id="meta-dimensions" class="meta-value">—</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page Meta Summary -->
+      <section class="card" id="page-meta-card">
+        <h2 class="section-title">Page Meta Summary</h2>
+        <div class="meta-grid">
+          <div class="meta-row"><span class="meta-label">Title:</span><span id="pg-title" class="meta-value"></span></div>
+          <div class="meta-row"><span class="meta-label">Description:</span><span id="pg-desc" class="meta-value"></span></div>
+          <div class="meta-row"><span class="meta-label">Domain:</span><span id="pg-domain" class="meta-value"></span></div>
+          <div class="meta-row"><span class="meta-label">OG Type:</span><span id="pg-type" class="meta-value"></span></div>
+          <div class="meta-row"><span class="meta-label">Twitter Card:</span><span id="pg-twitter" class="meta-value"></span></div>
+        </div>
+      </section>
+
+      <!-- Image Generator -->
+      <section class="card" id="generator-card">
+        <h2 class="section-title">Generate Social Preview Image</h2>
+        <p class="hint">Customize and generate a professional 1200 × 630 image.</p>
+
+        <!-- Preset templates -->
+        <div class="form-group">
+          <label class="form-label" for="template-select">Template</label>
+          <select id="template-select" class="form-control">
+            <option value="gradient-blue">Gradient Blue</option>
+            <option value="gradient-purple">Gradient Purple</option>
+            <option value="gradient-green">Gradient Green</option>
+            <option value="gradient-orange">Gradient Orange</option>
+            <option value="dark">Dark Professional</option>
+            <option value="light">Light Clean</option>
+            <option value="branded">Branded (Custom Colour)</option>
+          </select>
+        </div>
+
+        <!-- Custom colour (only for "branded") -->
+        <div class="form-group" id="color-group" style="display:none">
+          <label class="form-label" for="bg-color">Background Colour</label>
+          <div class="color-row">
+            <input type="color" id="bg-color" value="#1a73e8" class="color-picker" />
+            <input type="text" id="bg-color-hex" value="#1a73e8" class="form-control color-hex" maxlength="7" />
+          </div>
+        </div>
+
+        <!-- Title -->
+        <div class="form-group">
+          <label class="form-label" for="gen-title">Title</label>
+          <input type="text" id="gen-title" class="form-control" placeholder="Page title" maxlength="80" />
+          <span class="char-count"><span id="title-count">0</span>/80</span>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label class="form-label" for="gen-desc">Description</label>
+          <textarea id="gen-desc" class="form-control" rows="2" placeholder="Short description" maxlength="120"></textarea>
+          <span class="char-count"><span id="desc-count">0</span>/120</span>
+        </div>
+
+        <!-- Domain / branding -->
+        <div class="form-group">
+          <label class="form-label" for="gen-domain">Domain / Brand</label>
+          <input type="text" id="gen-domain" class="form-control" placeholder="example.com" maxlength="60" />
+        </div>
+
+        <!-- Format selector -->
+        <div class="form-group">
+          <label class="form-label">Image Format</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="img-format" value="png" checked /> PNG
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="img-format" value="jpeg" /> JPEG
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="img-format" value="webp" /> WebP
+            </label>
+          </div>
+        </div>
+
+        <!-- Resolution selector -->
+        <div class="form-group">
+          <label class="form-label" for="resolution-select">Resolution</label>
+          <select id="resolution-select" class="form-control">
+            <option value="1200x630">1200 × 630 — OG / Meta (recommended)</option>
+            <option value="1200x628">1200 × 628 — Facebook / LinkedIn</option>
+            <option value="1024x512">1024 × 512 — Twitter Summary Large</option>
+            <option value="800x418">800 × 418 — Compact OG</option>
+            <option value="600x314">600 × 314 — Minimum OG</option>
+          </select>
+        </div>
+
+        <!-- Actions -->
+        <div class="btn-row">
+          <button id="btn-preview" class="btn btn-secondary">Preview</button>
+          <button id="btn-generate" class="btn btn-primary">Generate &amp; Download</button>
+        </div>
+
+        <!-- Canvas preview area -->
+        <div id="canvas-wrapper" class="canvas-wrapper hidden">
+          <canvas id="gen-canvas"></canvas>
+          <div id="download-links" class="download-links hidden">
+            <p class="download-title">Download image:</p>
+            <div id="download-buttons" class="download-btn-row"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
