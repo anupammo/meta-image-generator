@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meta Image Generator Privacy Policy</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --text: #162033;
+        --muted: #56627a;
+        --line: #d9e1ee;
+        --brand: #165dff;
+        --brand-dark: #0f3ea8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(22, 93, 255, 0.12), transparent 28%),
+          linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+      }
+
+      .wrap {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 48px 20px 72px;
+      }
+
+      .hero {
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        margin: 0 0 10px;
+        font-size: 2.25rem;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 28px;
+        box-shadow: 0 18px 50px rgba(21, 41, 77, 0.08);
+      }
+
+      h2 {
+        margin: 28px 0 10px;
+        font-size: 1.2rem;
+      }
+
+      h2:first-child {
+        margin-top: 0;
+      }
+
+      p,
+      li {
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      ul {
+        margin: 10px 0 0;
+        padding-left: 20px;
+      }
+
+      a {
+        color: var(--brand-dark);
+      }
+
+      .meta {
+        display: inline-block;
+        margin-top: 14px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(22, 93, 255, 0.08);
+        color: var(--brand-dark);
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+
+      @media (max-width: 640px) {
+        .wrap {
+          padding: 28px 14px 40px;
+        }
+
+        .card {
+          padding: 20px;
+          border-radius: 14px;
+        }
+
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <header class="hero">
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">Meta Image Generator Chrome Extension</p>
+        <div class="meta">Last updated: April 8, 2026</div>
+      </header>
+
+      <section class="card">
+        <h2>Overview</h2>
+        <p>Meta Image Generator checks the social preview metadata of the active webpage and generates a downloadable social preview image in the browser.</p>
+
+        <h2>What Data The Extension Accesses</h2>
+        <p>When you open the extension on a webpage, it reads page data locally in your browser to perform its function. This can include:</p>
+        <ul>
+          <li>Open Graph and Twitter Card meta tags</li>
+          <li>Page title and meta description</li>
+          <li>Canonical URL and domain name</li>
+          <li>Favicon, logo candidates, and related page image references</li>
+          <li>Basic visual styling hints such as theme color or detected page colors</li>
+          <li>An optional direct image URL that you provide for rendering a preview image</li>
+        </ul>
+
+        <h2>What The Extension Does Not Do</h2>
+        <p>Meta Image Generator does not collect, store, or transmit personal data or browsing data to the developer or third parties.</p>
+        <ul>
+          <li>It does not create user accounts.</li>
+          <li>It does not use analytics or advertising trackers.</li>
+          <li>It does not sell or share user data.</li>
+          <li>It does not monitor browsing activity in the background.</li>
+          <li>It does not use remote code execution.</li>
+        </ul>
+
+        <h2>How Image Rendering Works</h2>
+        <p>Image generation happens locally on your device using browser APIs. Downloaded files are created locally in your browser. If you choose to use an external image URL, your browser may request that image directly from the source so it can be rendered in the generated preview.</p>
+
+        <h2>Permissions</h2>
+        <p>The extension uses activeTab, scripting, and host access only to inspect the page you choose to analyze, extract its social metadata, and fetch image assets needed for preview or local image generation.</p>
+
+        <h2>Changes To This Policy</h2>
+        <p>This policy may be updated if the extension's functionality changes.</p>
+
+        <h2>Contact</h2>
+        <p class="muted">Add your support email or contact page here before publishing this policy.</p>
+      </section>
+    </main>
+  </body>
+</html>

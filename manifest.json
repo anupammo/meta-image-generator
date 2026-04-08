@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Meta Image Generator",
   "version": "1.0.0",
-  "description": "Check meta image availability and generate professional OG/meta images for social preview with downloadable links in multiple formats.",
+  "description": "Check meta image availability & generate professional OG/meta images for social preview with downloadable links in multiple formats.",
   "permissions": [
     "activeTab",
     "scripting"
